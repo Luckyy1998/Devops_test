@@ -2,11 +2,11 @@ resources:
   repositories:
   - repository: NSE_Report # The name used to reference this repository in the checkout step
     type: git
-    name: Ansible-Test/NSE_Report
+    name: NSE_Report
     
   - repository: Top_Gainers-Losers
     type: git
-    name: Ansible-Test/Top_Gainers-Losers
+    name: Top_Gainers-Losers
   
 trigger:
 - master
