@@ -11,8 +11,8 @@ resources:
 trigger:
 - master
 
-pool:
-  vmImage: ubuntu-latest
+pool:  
+  name: local 
 
 steps:
 - checkout: self
