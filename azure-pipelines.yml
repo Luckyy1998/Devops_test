@@ -1,13 +1,11 @@
 resources:
   repositories:
   - repository: NSE_Report # The name used to reference this repository in the checkout step
-    type: github
-    endpoint: MyGitHubServiceConnection
+    type: git
     name: Luckyy1998/NSE_Report
     
   - repository: Top_Gainers-Losers
-    type: github
-    endpoint: MyGitHubServiceConnection
+    type: git
     name: Luckyy1998/Top_Gainers-Losers
   
 trigger:
