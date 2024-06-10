@@ -6,7 +6,7 @@ resources:
     
   - repository: Top_Gainers-Losers
     type: git
-    name: Ansible-Test//Top_Gainers-Losers
+    name: Ansible-Test/Top_Gainers-Losers
   
 trigger:
 - master
