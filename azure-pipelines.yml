@@ -1,8 +1,15 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
-
+resources:
+  repositories:
+  - repository: NSE_Report # The name used to reference this repository in the checkout step
+    type: github
+    endpoint: MyGitHubServiceConnection
+    name: Luckyy1998/NSE_Report
+    
+  - repository: Top_Gainers-Losers
+    type: github
+    endpoint: MyGitHubServiceConnection
+    name: Luckyy1998/Top_Gainers-Losers
+  
 trigger:
 - master
 
@@ -10,10 +17,8 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+- checkout: self
+- checkout: NSE_Report
+- checkout: Top_Gainers-Losers
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+- script: dir $(Build.SourcesDirectory)
