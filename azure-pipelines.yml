@@ -35,7 +35,7 @@ jobs:
         displayName: 'Display running information and custom output'
 
     - ${{ if eq(parameters.playbook, 'Top_Gainer-Losers/top_gainers_losers.py') }}:
-      - checkout: Top_Gainer_Losers
+      - checkout: Top_Gainer-Losers
       - script: |
           echo "Running ${{ parameters.playbook }} from $(Build.SourceBranch)"
           echo "Custom output for Top_Gainer_Losers repository."
