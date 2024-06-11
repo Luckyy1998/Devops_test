@@ -4,7 +4,7 @@ resources:
     type: git
     name: Ansible-Test/NSE_Report.git
     
-  - repository: Top_Gainers-Losers
+  - repository: Top_Gainer-Losers
     type: git
     name: Ansible-Test/Top_Gainer-Losers.git
   
@@ -16,7 +16,21 @@ pool:
 
 steps:
 - checkout: self
+- script: |
+    echo "Files in self repository:"
+    ls -alR $(Build.SourcesDirectory)
+  displayName: 'List files in self repository'
+  
 - checkout: NSE_Report
-- checkout: Top_Gainers-Losers
+- script: |
+    echo "Files in NSE_Report repository:"
+    ls -alR $(Build.SourcesDirectory)/NSE_Report
+  displayName: 'List files in NSE_Report repository'
+  
+- checkout: Top_Gainer-Losers
+- script: |
+    echo "Files in Top_Gainer-Losers repository:"
+    ls -alR $(Build.SourcesDirectory)/Top_Gainer-Losers
+  displayName: 'List files in Top_Gainer-Losers repository'
 
 - script: dir $(Build.SourcesDirectory)
