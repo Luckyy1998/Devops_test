@@ -29,15 +29,14 @@ jobs:
   steps:
     - ${{ if eq(parameters.playbook, 'NSE_Report/top_gainers_losers.py') }}:
       - checkout: NSE_Report
-      - script: echo Running ${{ parameters.playbook }} from $(Build.SourceBranch)
-        displayName: 'Display running information'
+      - script: |
+          echo "Running ${{ parameters.playbook }} from $(Build.SourceBranch)"
+          echo "Custom output for NSE_Report repository."
+        displayName: 'Display running information and custom output'
 
     - ${{ if eq(parameters.playbook, 'Top_Gainer_Losers/top_gainers_losers.py') }}:
       - checkout: Top_Gainer_Losers
-      - script: echo Running ${{ parameters.playbook }} from $(Build.SourceBranch)
-        displayName: 'Display running information'
-
-    - task: AzureCLI@2
-      displayName: Run python
-      inputs:
-        scriptPath: ${{ parameters.playbook }}
+      - script: |
+          echo "Running ${{ parameters.playbook }} from $(Build.SourceBranch)"
+          echo "Custom output for Top_Gainer_Losers repository."
+        displayName: 'Display running information and custom output'
