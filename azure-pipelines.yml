@@ -32,7 +32,7 @@ jobs:
       - script: |
           echo "Running ${{ parameters.playbook }} from $(Build.SourceBranch)"
           echo "Custom output for NSE_Report repository."
-          ./NSE_Report/test.ps1
+          pwsh -File "$(Build.SourcesDirectory)/NSE_Report/test.ps1"
         displayName: 'Display running information and custom output'
 
     - ${{ if eq(parameters.playbook, 'Top_Gainer-Losers/top_gainers_losers.py') }}:
