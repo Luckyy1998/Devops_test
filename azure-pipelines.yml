@@ -27,13 +27,17 @@ jobs:
 - job: ansible_ping
   displayName: Execute Ansible playbooks
   steps:
+    - ${{ if eq(parameters.playbook, 'NSE_Report/top_gainers_losers.py') }}:
+      - checkout: NSE_Report
+      - script: echo Running ${{ parameters.playbook }} from $(Build.SourceBranch)
+        displayName: 'Display running information'
+
+    - ${{ if eq(parameters.playbook, 'Top_Gainer_Losers/top_gainers_losers.py') }}:
+      - checkout: Top_Gainer_Losers
+      - script: echo Running ${{ parameters.playbook }} from $(Build.SourceBranch)
+        displayName: 'Display running information'
+
     - task: AzureCLI@2
       displayName: Run python
-      condition: |
-        or(
-          eq('${{ parameters.playbook }}', 'NSE_Report/top_gainers_losers.py),
-          eq('${{ parameters.playbook }}', 'Top_Gainer-Losers/top_gainers_losers.py')
-        )
       inputs:
-      inlineScript: python3 ${{parameters.playbook}}
-  
+        scriptPath: ${{ parameters.playbook }}
