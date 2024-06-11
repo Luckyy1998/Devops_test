@@ -23,28 +23,17 @@ parameters:
     - 'NSE_Report/top_gainers_losers.py'
     - 'Top_Gainer-Losers/top_gainers_losers.py'
 
-steps:
-- checkout: self
-- script: |
-    echo "Files in self repository:"
-    dir /s "$(Build.SourcesDirectory)"
-  displayName: 'List files in self repository'
+jobs:
+- job: ansible_ping
+  displayName: Execute Ansible playbooks
+  steps:
+    - task: AzureCLI@2
+      displayName: Run python
+      condition: |
+        or(
+          eq('${{ parameters.playbook }}', 'NSE_Report/top_gainers_losers.py),
+          eq('${{ parameters.playbook }}', 'Top_Gainer-Losers/top_gainers_losers.py')
+        )
+      inputs:
+      inlineScript: python3 ${{parameters.playbook}}
   
-- task: AzureCLI@2
-  displayName: Run python
-  condition: |
-    or(
-      eq('${{ parameters.playbook }}', 'NSE_Report/top_gainers_losers.py),
-      eq('${{ parameters.playbook }}', 'Top_Gainer-Losers/top_gainers_losers.py')
-    )
-  inputs:
-    inlineScript: python3 ${{parameters.playbook}}
-  
-  
-- checkout: Top_Gainer-Losers
-- script: |
-    echo "Files in Top_Gainer-Losers repository:"
-    dir /s "$(Build.SourcesDirectory)\Top_Gainer-Losers"
-  displayName: 'List files in Top_Gainer-Losers repository'
-
-- script: dir $(Build.SourcesDirectory)
