@@ -26,12 +26,10 @@ parameters:
 jobs:
 - job: ansible_ping
   displayName: Execute Ansible playbooks
-  steps:
-  
+  steps:  
     - ${{ if eq(parameters.playbook, 'NSE_Report/top_gainers_losers.py') }}:
       - checkout: NSE_Report
       - script: |
-          /bin/sh NSE_Report/test.sh
           echo "Running ${{ parameters.playbook }} from $(Build.SourceBranch)"
           echo "Custom output for NSE_Report repository."
         displayName: 'Display running information and custom output'
