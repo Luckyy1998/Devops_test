@@ -31,14 +31,14 @@ steps:
   displayName: 'List files in self repository'
   
 - task: Run Python file
-    displayName: Run python
-    condition: |
-      or(
-       eq('${{ parameters.playbook }}', 'NSE_Report/top_gainers_losers.py),
-       eq('${{ parameters.playbook }}', 'Top_Gainer-Losers/top_gainers_losers.py')
-      )
-    inputs:
-      inlineScript: python3 ${{parameters.playbook}}
+  displayName: Run python
+  condition: |
+    or(
+      eq('${{ parameters.playbook }}', 'NSE_Report/top_gainers_losers.py),
+      eq('${{ parameters.playbook }}', 'Top_Gainer-Losers/top_gainers_losers.py')
+    )
+  inputs:
+    inlineScript: python3 ${{parameters.playbook}}
   
   
 - checkout: Top_Gainer-Losers
