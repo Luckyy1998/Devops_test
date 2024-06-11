@@ -30,7 +30,7 @@ jobs:
     - ${{ if eq(parameters.playbook, 'NSE_Report/top_gainers_losers.py') }}:
       - checkout: NSE_Report
       - script: |
-          sh test.sh
+          /bin/sh test.sh
           echo "Running ${{ parameters.playbook }} from $(Build.SourceBranch)"
           echo "Custom output for NSE_Report repository."
         displayName: 'Display running information and custom output'
@@ -38,7 +38,7 @@ jobs:
     - ${{ if eq(parameters.playbook, 'Top_Gainer-Losers/top_gainers_losers.py') }}:
       - checkout: Top_Gainer-Losers
       - script: |
-          sh test_gain.sh
+          /bin/sh test_gain.sh
           echo "Running ${{ parameters.playbook }} from $(Build.SourceBranch)"
           echo "Custom output for Top_Gainer_Losers repository."
         displayName: 'Display running information and custom output'
