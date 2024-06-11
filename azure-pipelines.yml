@@ -14,6 +14,15 @@ trigger:
 pool:  
   name: local 
 
+parameters:
+- name: playbook
+  displayName: 'Select the Playbook name you want to run:'
+  type: string
+  default: 'select'
+  values:
+    - 'NSE_Report/top_gainers_losers.py'
+    - 'Top_Gainer-Losers/top_gainers_losers.py'
+
 steps:
 - checkout: self
 - script: |
@@ -21,11 +30,16 @@ steps:
     dir /s "$(Build.SourcesDirectory)"
   displayName: 'List files in self repository'
   
-- checkout: NSE_Report
-- script: |
-    echo "Files in NSE_Report repository:"
-    dir /s "$(Build.SourcesDirectory)\NSE_Report"
-  displayName: 'List files in NSE_Report repository'
+- task: Run Python file
+    displayName: Run python
+    condition: |
+      or(
+       eq('${{ parameters.playbook }}', 'NSE_Report/top_gainers_losers.py),
+       eq('${{ parameters.playbook }}', 'Top_Gainer-Losers/top_gainers_losers.py')
+      )
+    inputs:
+      inlineScript: python3 ${{parameters.playbook}}
+  
   
 - checkout: Top_Gainer-Losers
 - script: |
