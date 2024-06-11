@@ -30,7 +30,7 @@ steps:
     dir /s "$(Build.SourcesDirectory)"
   displayName: 'List files in self repository'
   
-- task: Run Python file
+- task: AzureCLI@2
   displayName: Run python
   condition: |
     or(
