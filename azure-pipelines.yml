@@ -18,19 +18,19 @@ steps:
 - checkout: self
 - script: |
     echo "Files in self repository:"
-    dir /s $(Build.SourcesDirectory)
+    dir /s "$(Build.SourcesDirectory)"
   displayName: 'List files in self repository'
   
 - checkout: NSE_Report
 - script: |
     echo "Files in NSE_Report repository:"
-    dir /s $(Build.SourcesDirectory)/NSE_Report.git
+    dir /s "$(Build.SourcesDirectory)\NSE_Report"
   displayName: 'List files in NSE_Report repository'
   
 - checkout: Top_Gainer-Losers
 - script: |
     echo "Files in Top_Gainer-Losers repository:"
-    dir /s $(Build.SourcesDirectory)/Top_Gainer-Losers.git
+    dir /s "$(Build.SourcesDirectory)\Top_Gainer-Losers"
   displayName: 'List files in Top_Gainer-Losers repository'
 
 - script: dir $(Build.SourcesDirectory)
