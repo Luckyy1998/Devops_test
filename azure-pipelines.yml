@@ -24,13 +24,13 @@ steps:
 - checkout: NSE_Report
 - script: |
     echo "Files in NSE_Report repository:"
-    dir /s $(Build.SourcesDirectory)/NSE_Report
+    dir /s $(Build.SourcesDirectory)/NSE_Report.git
   displayName: 'List files in NSE_Report repository'
   
 - checkout: Top_Gainer-Losers
 - script: |
     echo "Files in Top_Gainer-Losers repository:"
-    dir /s $(Build.SourcesDirectory)/Top_Gainer-Losers
+    dir /s $(Build.SourcesDirectory)/Top_Gainer-Losers.git
   displayName: 'List files in Top_Gainer-Losers repository'
 
 - script: dir $(Build.SourcesDirectory)
